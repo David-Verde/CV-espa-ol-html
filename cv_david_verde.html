@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>David Verde Alvarez - Desarrollador Full-Stack</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .name {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .title {
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9em;
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+
+        .main-content {
+            padding: 30px;
+        }
+
+        .section {
+            margin-bottom: 35px;
+        }
+
+        .section-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 3px solid #3498db;
+            position: relative;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            width: 50px;
+            height: 3px;
+            background: #e74c3c;
+        }
+
+        .summary {
+            text-align: justify;
+            font-size: 1.05em;
+            line-height: 1.7;
+            color: #444;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .skill-category {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #e74c3c;
+        }
+
+        .skill-category h4 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .skill-category p {
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+
+        .experience-item {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #27ae60;
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .job-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .company {
+            font-size: 1.1em;
+            color: #e74c3c;
+            margin-bottom: 5px;
+        }
+
+        .duration {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            font-style: italic;
+        }
+
+        .job-description {
+            margin-top: 10px;
+        }
+
+        .job-description ul {
+            padding-left: 20px;
+            margin-top: 10px;
+        }
+
+        .job-description li {
+            margin-bottom: 5px;
+            line-height: 1.5;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .project-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #9b59b6;
+        }
+
+        .project-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .project-tech {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            font-style: italic;
+        }
+
+        .education-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #f39c12;
+        }
+
+        .education-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .education-institution {
+            color: #e74c3c;
+            margin-bottom: 5px;
+        }
+
+        .education-duration {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            font-style: italic;
+        }
+
+        .additional-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .info-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #1abc9c;
+        }
+
+        .info-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+            
+            .section {
+                page-break-inside: avoid;
+            }
+            
+            .experience-item {
+                page-break-inside: avoid;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .contact-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .job-header {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .skills-grid,
+            .project-grid,
+            .additional-info {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1 class="name">David Verde Alvarez</h1>
+                <p class="title">Desarrollador Web Full-Stack</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span>📧</span>
+                        <a href="mailto:David.verde.alvarez@gmail.com" style="color: white; text-decoration: none;">David.verde.alvarez@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <span>🌐</span>
+                        <a href="https://portfolio-david-verde.netlify.app" target="_blank" style="color: white; text-decoration: none;">Portafolio</a>
+                    </div>
+                    <div class="contact-item">
+                        <span>💻</span>
+                        <a href="https://github.com/David-Verde" target="_blank" style="color: white; text-decoration: none;">GitHub</a>
+                    </div>
+                    <div class="contact-item">
+                        <span>💼</span>
+                        <a href="https://www.linkedin.com/in/david-verde-alvarez/" target="_blank" style="color: white; text-decoration: none;">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <section class="section">
+                <h2 class="section-title">Resumen Profesional</h2>
+                <div class="summary">
+                    Desarrollador Web Full-Stack apasionado y autodidacta con más de 5 años de experiencia en el diseño, desarrollo y despliegue de aplicaciones web escalables. Competente en desarrollo tanto front-end como back-end, especializado en JavaScript, React, Redux, Ruby on Rails y MongoDB. Firme defensor del código limpio, metodologías ágiles y aprendizaje continuo, con historial comprobado de entregar soluciones centradas en el usuario y de alta calidad. Busco una posición remota como Desarrollador Full-Stack para aplicar mis habilidades en la creación de experiencias web innovadoras.
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Habilidades Técnicas</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h4>Front-End</h4>
+                        <p>JavaScript (ES6+), React, Gatsby, Redux, Angular, TypeScript, jQuery, HTML5, CSS3, SASS, Material UI</p>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Back-End</h4>
+                        <p>Ruby on Rails, Python, Node.js, Express, MySQL, PostgreSQL, MongoDB, Mongoose</p>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Herramientas y Métodos</h4>
+                        <p>Git, GitHub, Heroku, Netlify, Chrome DevTools, TDD, RSpec, RabbitMQ, AWS Cloud (EC2, S3, Lambda)</p>
+                    </div>
+                    <div class="skill-category">
+                        <h4>Habilidades Profesionales</h4>
+                        <p>Programación en pareja remota, Desarrollo Ágil, Colaboración en equipo, Mentoría, Revisión de código</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Experiencia Profesional</h2>
+                
+                <div class="experience-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="company">Immiland Canada</div>
+                            <div class="job-title">Desarrollador Full-Stack</div>
+                        </div>
+                        <div class="duration">Remoto | Marzo 2023 – Diciembre 2024</div>
+                    </div>
+                    <div class="job-description">
+                        <ul>
+                            <li>Desarrollé y mantuve aplicaciones web dinámicas y responsivas, mejorando la interacción con los clientes</li>
+                            <li>Implementé soluciones front-end y back-end usando React, Redux, Gatsby, Ruby on Rails y PostgreSQL</li>
+                            <li>Optimicé el rendimiento y la escalabilidad, reduciendo los tiempos de carga en un 30%</li>
+                            <li>Colaboré estrechamente con diseñadores y gestores de producto para crear experiencias de usuario intuitivas</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="company">Freelancer en Upwork</div>
+                            <div class="job-title">Desarrollador Full-Stack</div>
+                        </div>
+                        <div class="duration">Remoto | Febrero 2015 – Presente</div>
+                    </div>
+                    <div class="job-description">
+                        <ul>
+                            <li>Busco proyectos de corta duración en Upwork para ganar experiencia</li>
+                            <li>Trabajo en proyectos diversos para clientes de todo el mundo</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="company">Mate Agency</div>
+                            <div class="job-title">Desarrollador Full-Stack</div>
+                        </div>
+                        <div class="duration">Remoto | Enero 2018 – Noviembre 2021</div>
+                    </div>
+                    <div class="job-description">
+                        <ul>
+                            <li>Desarrollé aplicaciones full-stack personalizadas para varios clientes</li>
+                            <li>Implementé soluciones de automatización para estandarizar el diseño y la producción</li>
+                            <li>Trabajé con sistemas distribuidos y arquitecturas monolíticas</li>
+                            <li>Creé soluciones escalables usando Next.js y TypeScript</li>
+                            <li>Desarrollé integraciones y procesos asíncronos usando RabbitMQ</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item">
+                    <div class="job-header">
+                        <div>
+                            <div class="company">Microverse</div>
+                            <div class="job-title">Mentor Voluntario</div>
+                        </div>
+                        <div class="duration">Remoto | Abril 2021 – Presente</div>
+                    </div>
+                    <div class="job-description">
+                        <ul>
+                            <li>Brindé mentoría técnica a desarrolladores junior</li>
+                            <li>Propuse mejoras en la calidad y estructura del código</li>
+                            <li>Ofrecí orientación sobre motivación y mejores prácticas para colaboración remota</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Proyectos Destacados</h2>
+                <div class="project-grid">
+                    <div class="project-item">
+                        <div class="project-title">Kanban Board – Creador de tableros de tareas</div>
+                        <div class="project-tech">Tecnologías: React, Redux, MongoDB, Material UI</div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-title">TV Series Finder – Buscador de series basado en API</div>
+                        <div class="project-tech">Tecnologías: JavaScript, HTML, CSS, API TVMaze</div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-title">Space Travelers Hub – Sistema de reserva de misiones espaciales</div>
+                        <div class="project-tech">Tecnologías: React, Redux, JavaScript, API SpaceX</div>
+                    </div>
+                    <div class="project-item">
+                        <div class="project-title">Leaderboard App – Sistema interactivo de puntuaciones</div>
+                        <div class="project-tech">Tecnologías: JavaScript, HTML, CSS, API para almacenamiento</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Educación y Formación</h2>
+                
+                <div class="education-item">
+                    <div class="education-title">Programa de Desarrollo Web Full-Stack</div>
+                    <div class="education-institution">Microverse</div>
+                    <div class="education-duration">Remoto | Enero 2021 – Enero 2024</div>
+                    <p>Programa intensivo a tiempo completo con más de 1,300 horas de codificación práctica en JavaScript, React, Ruby on Rails y TDD.</p>
+                </div>
+
+                <div class="education-item">
+                    <div class="education-title">Licenciatura en Ingeniería en Computación</div>
+                    <div class="education-institution">Universidad Rafael Belloso Chacín (U.R.B.E)</div>
+                    <div class="education-duration">Enero 2010 – Diciembre 2014</div>
+                    <p>Conocimientos fundamentales en desarrollo de software, bases de datos y sistemas de hardware.</p>
+                </div>
+
+                <div class="education-item">
+                    <div class="education-title">TSU en Electricidad Industrial</div>
+                    <div class="education-institution">Instituto Universitario de Tecnología Pedro Emilio Coll (I.U.T.P.E.C)</div>
+                    <div class="education-duration">Febrero 2008 – Diciembre 2011</div>
+                    <p>Especialización en circuitos eléctricos, automatización industrial y distribución de energía.</p>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Información Adicional</h2>
+                <div class="additional-info">
+                    <div class="info-item">
+                        <div class="info-title">Idiomas</div>
+                        <p>Inglés y español (fluido)</p>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-title">Disponibilidad</div>
+                        <p>Abierto a oportunidades remotas globales</p>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-title">Intereses</div>
+                        <p>Contribuciones a proyectos open-source, IA aplicada al desarrollo web, mentoría a desarrolladores en formación</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
